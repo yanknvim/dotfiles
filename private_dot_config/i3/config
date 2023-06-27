@@ -15,7 +15,7 @@ default_floating_border none
 gaps inner 10px
 
 exec --no-startup-id light-locker --lock-on-suspend
-exec --no-startup-id fbsetbg ~/Wallpapers/hakka.jpg
+exec --no-startup-id ~/.fehbg
 exec --no-startup-id dunst
 exec --no-startup-id picom
 exec --no-startup-id fcitx5
