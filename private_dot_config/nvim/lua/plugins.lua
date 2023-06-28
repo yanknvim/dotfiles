@@ -57,7 +57,7 @@ require('packer').startup(function(use)
 			{"hrsh7th/vim-vsnip", event = { "InsertEnter" } },
 			{"hrsh7th/cmp-path", event = { "InsertEnter" } },
 			{"hrsh7th/cmp-buffer", event = { "InsertEnter" } },
-			{'hrsh7th/cmp-cmdline'},
+			{'hrsh7th/cmp-cmdline', event= { "CmdlineEnter" } },
 		},
 		config = function()
 			local cmp = require("cmp")
@@ -115,19 +115,6 @@ require('packer').startup(function(use)
 					}
 				})
 			})
-		end
-	}
-	use {
-		'nvim-treesitter/nvim-treesitter',
-		run = ':TSUpdate',
-		config = function()
-			require('nvim-treesitter.configs').setup{
-				ensure_installed = "all",
-				auto_install = true,
-				highlight = {
-					enable = true
-				},
-			}
 		end
 	}
 
