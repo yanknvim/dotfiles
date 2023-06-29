@@ -10,6 +10,9 @@ yank.nvim's Dotfiles
 - i3wm
 - dunst
 - polybar
+- rofi
+    - rofi-power-menu
+    - nord-theme
 - zsh
     - zinit
     - pure
