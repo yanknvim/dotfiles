@@ -1,185 +1,183 @@
 return {
 	{
-		'shaunsingh/nord.nvim',
+		"shaunsingh/nord.nvim",
 		lazy = false,
-		config = function() 
+		config = function()
 			vim.cmd([[colorscheme nord]])
-		end
+		end,
 	},
-	{ 'kyazdani42/nvim-web-devicons', lazy = true },
+	{ "kyazdani42/nvim-web-devicons", lazy = true },
 
 	{
-		'nvim-telescope/telescope.nvim',
+		"nvim-telescope/telescope.nvim",
 		lazy = true,
-		dependencies = { 'nvim-lua/plenary.nvim' },
+		dependencies = { "nvim-lua/plenary.nvim" },
 	},
 
 	{
-		'phaazon/hop.nvim',
-        lazy = true,
+		"phaazon/hop.nvim",
+		lazy = true,
 		config = function()
-			require('hop').setup()
-		end
+			require("hop").setup()
+		end,
 	},
-    
-    {
-		'neovim/nvim-lspconfig',
-		event = { 'BufReadPre' },
+
+	{
+		"neovim/nvim-lspconfig",
+		event = { "BufReadPre" },
 		dependencies = {
-			{ 'williamboman/mason-lspconfig.nvim', lazy = true },
-			{ 'williamboman/mason.nvim', lazy = true }
+			{ "williamboman/mason-lspconfig.nvim", lazy = true },
+			{ "williamboman/mason.nvim", lazy = true },
 		},
 		config = function()
-			require('mason').setup()
-			require('mason-lspconfig').setup_handlers {
+			require("mason").setup()
+			require("mason-lspconfig").setup_handlers({
 				function(server_name)
-					require('lspconfig')[server_name].setup {
+					require("lspconfig")[server_name].setup({
 						on_attach = on_attach,
-					}
-				end
-			}
+					})
+				end,
+			})
 
-			require('lspconfig').metals.setup{}
-		end
+			require("lspconfig").metals.setup({})
+		end,
 	},
 
-    {
-		'hrsh7th/nvim-cmp',
-        lazy = true,
+	{
+		"hrsh7th/nvim-cmp",
+		lazy = true,
 		dependencies = {
-			{ 'hrsh7th/cmp-nvim-lsp', event = { 'InsertEnter' } },
-			{ 'hrsh7th/vim-vsnip', event = { 'InsertEnter' } },
-			{ 'hrsh7th/cmp-path', event = { 'InsertEnter' } },
-			{ 'hrsh7th/cmp-buffer', event = { 'InsertEnter' } },
-			{ 'hrsh7th/cmp-cmdline', event= { 'CmdlineEnter' } },
+			{ "hrsh7th/cmp-nvim-lsp", event = { "InsertEnter" } },
+			{ "hrsh7th/vim-vsnip", event = { "InsertEnter" } },
+			{ "hrsh7th/cmp-path", event = { "InsertEnter" } },
+			{ "hrsh7th/cmp-buffer", event = { "InsertEnter" } },
+			{ "hrsh7th/cmp-cmdline", event = { "CmdlineEnter" } },
 		},
 		config = function()
-			local cmp = require('cmp')
+			local cmp = require("cmp")
 			cmp.setup({
 				snippet = {
 					expand = function(args)
-						vim.fn['vsnip#anoymous'](args.body)
+						vim.fn["vsnip#anoymous"](args.body)
 					end,
 				},
 				window = {
 					completion = cmp.config.window.bordered({
-						border = 'single'
+						border = "single",
 					}),
 					documentation = cmp.config.window.bordered({
-						border = 'single'
-					})
+						border = "single",
+					}),
 				},
 				mapping = cmp.mapping.preset.insert({
-					['<C-b>'] = cmp.mapping.scroll_docs(-4),
-					['<C-f>'] = cmp.mapping.scroll_docs(4),
-					['<C-p>'] = cmp.mapping.select_prev_item(),
-					['<C-n>'] = cmp.mapping.select_next_item(),
-					['<C-y>'] = cmp.mapping.complete(),
-					['<C-e>'] = cmp.mapping.abort(),
-					['<CR>'] = cmp.mapping.confirm { select = true },
+					["<C-b>"] = cmp.mapping.scroll_docs(-4),
+					["<C-f>"] = cmp.mapping.scroll_docs(4),
+					["<C-p>"] = cmp.mapping.select_prev_item(),
+					["<C-n>"] = cmp.mapping.select_next_item(),
+					["<C-y>"] = cmp.mapping.complete(),
+					["<C-e>"] = cmp.mapping.abort(),
+					["<CR>"] = cmp.mapping.confirm({ select = true }),
 				}),
 				sources = cmp.config.sources({
-					{ name = 'nvim_lsp' },
-					{ name = 'vsnip' },
-					{ name = 'buffer' },
-					{ name = 'path' }
+					{ name = "nvim_lsp" },
+					{ name = "vsnip" },
+					{ name = "buffer" },
+					{ name = "path" },
 				}),
 				experimental = {
 					ghost_text = true,
-				}
+				},
 			})
-			
-			cmp.setup.cmdline('/', {
+
+			cmp.setup.cmdline("/", {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = {
-					{ name = 'buffer' }
-				}
+					{ name = "buffer" },
+				},
 			})
 
-			cmp.setup.cmdline(':', {
+			cmp.setup.cmdline(":", {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = cmp.config.sources({
-					{ name = 'path' }
+					{ name = "path" },
 				}, {
 					{
-						name = 'cmdline',
+						name = "cmdline",
 						option = {
-							ignore_cmds = {'Man', '!'}
-						}
-					}
-				})
+							ignore_cmds = { "Man", "!" },
+						},
+					},
+				}),
 			})
-		end
-    },
+		end,
+	},
 
-    {
-        'norcalli/nvim-colorizer.lua',
-        config = function()
-          require('colorizer').setup()
-        end
-    },
+	{
+		"norcalli/nvim-colorizer.lua",
+		config = function()
+			require("colorizer").setup()
+		end,
+	},
 
-    {
-        'lewis6991/gitsigns.nvim',
-        config = function()
-          require('gitsigns').setup()
-        end
-	  },
-    
-    {
-        'lukas-reineke/indent-blankline.nvim',
-        event = { 'BufReadPre' },
-        config = function()
-          require('indent_blankline').setup {
-            show_end_of_line = true,
-          }
-        end
-    },
-    
-    {
-        'nvim-lualine/lualine.nvim',
-        config = function()
-          require('lualine').setup{
-            options = {
-              icons_enabled = true,
-              theme = 'auto',
-              component_separators = { left = '', right = ''},
-              section_separators = { left = '', right = ''},
-              globalstatus = true
-            },
-            sections = {
-              lualine_a = {'mode'},
-              lualine_b = {'branch', 'diff'},
-              lualine_c = {'filetype', 'filename'},
-              lualine_x = {},
-              lualine_y = {'progress'},
-              lualine_z = {'location'}
-            }
-          }
-        end
-	  },
+	{
+		"lewis6991/gitsigns.nvim",
+		config = function()
+			require("gitsigns").setup()
+		end,
+	},
 
-    {
-        'petertriho/nvim-scrollbar',
-        config = function()
-          require('scrollbar').setup()
-        end
-    },
-    
-    {
-        'akinsho/bufferline.nvim',
-        config = function()
-          require('bufferline').setup()
-        end
-	  },
-    
-    {
-        'windwp/nvim-autopairs',
-        event = { 'InsertEnter' },
-        config = function()
-          require('nvim-autopairs').setup()
-        end,
-	  }
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		event = { "BufReadPre" },
+		config = function()
+			require("indent_blankline").setup({
+				show_end_of_line = true,
+			})
+		end,
+	},
+
+	{
+		"nvim-lualine/lualine.nvim",
+		config = function()
+			require("lualine").setup({
+				options = {
+					icons_enabled = true,
+					theme = "auto",
+					component_separators = { left = "", right = "" },
+					section_separators = { left = "", right = "" },
+					globalstatus = true,
+				},
+				sections = {
+					lualine_a = { "mode" },
+					lualine_b = { "branch", "diff" },
+					lualine_c = { "filetype", "filename" },
+					lualine_x = {},
+					lualine_y = { "progress" },
+					lualine_z = { "location" },
+				},
+			})
+		end,
+	},
+
+	{
+		"petertriho/nvim-scrollbar",
+		config = function()
+			require("scrollbar").setup()
+		end,
+	},
+
+	{
+		"akinsho/bufferline.nvim",
+		config = function()
+			require("bufferline").setup()
+		end,
+	},
+
+	{
+		"windwp/nvim-autopairs",
+		event = { "InsertEnter" },
+		config = function()
+			require("nvim-autopairs").setup()
+		end,
+	},
 }
-	
-

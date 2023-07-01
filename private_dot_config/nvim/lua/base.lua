@@ -1,4 +1,3 @@
-
 vim.opt.termguicolors = true
 
 vim.opt.backup = false
@@ -19,8 +18,8 @@ vim.opt.wrapscan = true
 vim.opt.hlsearch = true
 
 vim.opt.list = true
-vim.opt.listchars = {eol='↲'}
+vim.opt.listchars = { eol = "↲" }
 
-vim.opt.mouse = 'a'
+vim.opt.mouse = "a"
 
-vim.opt.helplang = 'ja', 'en'
+vim.opt.helplang = "ja", "en"
