@@ -23,6 +23,37 @@ return {
 	},
 
 	{
+		"nvim-treesitter/nvim-treesitter",
+		event = { "BufReadPre" },
+		config = function()
+			require("nvim-treesitter.configs").setup {
+				highlight = {
+					enable = true,
+					auto_install = true,
+				},
+				indent = {
+					enable = true,
+				}
+			}
+		end
+		
+	},
+
+	{
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+			"rcarriga/nvim-notify",
+		},
+		config = function()
+			require("noice").setup({
+				
+			})
+		end
+	},
+
+	{
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre" },
 		dependencies = {
@@ -121,6 +152,7 @@ return {
 
 	{
 		"lewis6991/gitsigns.nvim",
+		event = { "BufReadPre" },
 		config = function()
 			require("gitsigns").setup()
 		end,
