@@ -14,7 +14,14 @@ return {
 			{ "<Leader>tt", ":NvimTreeToggle<CR>" },
 		},
 		config = function()
-			require("nvim-tree").setup()
+			function keymap(bufnr)
+				local api = require('nvim-tree.api')
+				vim.keymap.set("n", "s", "")
+			end
+
+			require("nvim-tree").setup{
+				on_attach = keymap
+			}
 		end
 	},
 
@@ -158,6 +165,7 @@ return {
 
 	{
 		"norcalli/nvim-colorizer.lua",
+		event = { "BufReadPre" },
 		config = function()
 			require("colorizer").setup()
 		end,
@@ -189,7 +197,7 @@ return {
 					icons_enabled = true,
 					theme = "nord",
 					component_separators = { left = "", right = "" },
-					section_separators = { left = "", right = "" },
+					section_separators = { left = "", right = "" },
 					globalstatus = true,
 				},
 				sections = {
