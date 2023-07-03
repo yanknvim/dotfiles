@@ -9,14 +9,47 @@ return {
 	{ "kyazdani42/nvim-web-devicons", lazy = true },
 
 	{
+		"nvim-tree/nvim-tree.lua",
+		keys = {
+			{ "<Leader>tt", ":NvimTreeToggle<CR>" },
+		},
+		config = function()
+			require("nvim-tree").setup()
+		end
+	},
+
+	{
 		"nvim-telescope/telescope.nvim",
-		lazy = true,
+		keys = {
+			{ "<Leader>ff", function()
+				require("telescope.builtin").find_files()
+			end },
+			{ "<Leader>fg", function()
+				require("telescope.builtin").live_grep()
+			end },
+			{ "<Leader>fb", function()
+				require("telescope.builtin").buffers()
+			end },
+			{ "<Leader>fc", function()
+				require("telescope.builtin").current_buffer_fuzzy_find()
+			end },
+		},
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
 
 	{
 		"phaazon/hop.nvim",
-		lazy = true,
+		keys = {
+			{ "<Leader>hl", function()
+				require("hop").hint_lines()
+			end },
+			{ "<Leader>hc", function()
+				require("hop").hint_char1()
+			end },
+			{ "<Leader>hw", function()
+				require("hop").hint_words()
+			end },
+		},
 		config = function()
 			require("hop").setup()
 		end,
@@ -37,20 +70,6 @@ return {
 			}
 		end
 		
-	},
-
-	{
-		"folke/noice.nvim",
-		event = "VeryLazy",
-		dependencies = {
-			"MunifTanjim/nui.nvim",
-			"rcarriga/nvim-notify",
-		},
-		config = function()
-			require("noice").setup({
-				
-			})
-		end
 	},
 
 	{
@@ -93,12 +112,6 @@ return {
 					end,
 				},
 				window = {
-					completion = cmp.config.window.bordered({
-						border = "single",
-					}),
-					documentation = cmp.config.window.bordered({
-						border = "single",
-					}),
 				},
 				mapping = cmp.mapping.preset.insert({
 					["<C-b>"] = cmp.mapping.scroll_docs(-4),
@@ -174,7 +187,7 @@ return {
 			require("lualine").setup({
 				options = {
 					icons_enabled = true,
-					theme = "auto",
+					theme = "nord",
 					component_separators = { left = "", right = "" },
 					section_separators = { left = "", right = "" },
 					globalstatus = true,
