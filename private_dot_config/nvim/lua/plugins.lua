@@ -9,23 +9,6 @@ return {
 	{ "kyazdani42/nvim-web-devicons", lazy = true },
 
 	{
-		"nvim-tree/nvim-tree.lua",
-		keys = {
-			{ "<Leader>tt", ":NvimTreeToggle<CR>" },
-		},
-		config = function()
-			function keymap(bufnr)
-				local api = require('nvim-tree.api')
-				vim.keymap.set("n", "s", "")
-			end
-
-			require("nvim-tree").setup{
-				on_attach = keymap
-			}
-		end
-	},
-
-	{
 		"nvim-telescope/telescope.nvim",
 		keys = {
 			{ "<Leader>ff", function()
@@ -101,21 +84,34 @@ return {
 	},
 
 	{
+		"L3MON4D3/LuaSnip",
+		event = { "InsertEnter" },
+		config = function()
+			local ls = require("luasnip")
+			local snip = ls.snippet
+			local text = ls.text_node
+			local insert = ls.insert_node
+		end
+	},
+
+	{
 		"hrsh7th/nvim-cmp",
 		lazy = true,
 		dependencies = {
 			{ "hrsh7th/cmp-nvim-lsp", event = { "InsertEnter" } },
-			{ "hrsh7th/vim-vsnip", event = { "InsertEnter" } },
+			{ "saadparwaiz1/cmp_luasnip", event = { "InsertEnter" } },
 			{ "hrsh7th/cmp-path", event = { "InsertEnter" } },
 			{ "hrsh7th/cmp-buffer", event = { "InsertEnter" } },
 			{ "hrsh7th/cmp-cmdline", event = { "CmdlineEnter" } },
 		},
 		config = function()
 			local cmp = require("cmp")
+			local luasnip = require("luasnip")
+
 			cmp.setup({
 				snippet = {
 					expand = function(args)
-						vim.fn["vsnip#anoymous"](args.body)
+						luasnip.lsp_expand(args.body)
 					end,
 				},
 				window = {
@@ -127,6 +123,13 @@ return {
 					["<C-n>"] = cmp.mapping.select_next_item(),
 					["<C-y>"] = cmp.mapping.complete(),
 					["<C-e>"] = cmp.mapping.abort(),
+					["<C-k>"] = cmp.mapping(function(fallback)
+							if luasnip.expand_or_jumpable() then
+								luasnip.expand_or_jump()
+							else
+								fallback()
+							end
+						end, { "i", "s" }),
 					["<CR>"] = cmp.mapping.confirm({ select = true }),
 				}),
 				sources = cmp.config.sources({
