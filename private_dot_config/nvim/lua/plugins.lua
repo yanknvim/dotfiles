@@ -1,7 +1,6 @@
 return {
 	{
 		"shaunsingh/nord.nvim",
-		lazy = false,
 		config = function()
 			vim.cmd([[colorscheme nord]])
 		end,
@@ -59,7 +58,6 @@ return {
 				}
 			}
 		end
-		
 	},
 
 	{
@@ -217,6 +215,16 @@ return {
 
 	{
 		"petertriho/nvim-scrollbar",
+		events = {
+			"BufWinEnter",
+			"TabEnter",
+			"TermEnter",
+			"WinEnter",
+			"CmdwinLeave",
+			"TextChanged",
+			"VimResized",
+			"WinScrolled",
+    },
 		config = function()
 			require("scrollbar").setup()
 		end,
