@@ -1,0 +1,17 @@
+[ip]
+command=hostname -i | awk '{ print "" $1 }'
+interval=once
+
+[time]
+command=date +%T
+interval=1
+
+[cpu_usage]
+command=echo $(mpstat | awk 'NR==4{printf("%d%", 100 - $12)}')
+interval=1
+label= 
+
+[memory]
+label= 
+command=free -h | awk 'match($0, /^Mem/){print $3}'
+interval=1

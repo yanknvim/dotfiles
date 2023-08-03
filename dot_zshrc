@@ -18,6 +18,8 @@ zinit light zsh-users/zsh-syntax-highlighting
 
 zinit light sindresorhus/pure
 
+EDITOR=nvim
+
 function search-history() {
 	BUFFER=$(history -n -r 1 | fzf --query="$LBUFFER")
 	CURSOR=${#BUFFER}
@@ -26,9 +28,14 @@ zle -N search-history
 bindkey '^P' search-history 
 
 . /opt/asdf-vm/asdf.sh
-export PATH="$PATH:~/.local/share/coursier/bin"
-export PATH="$PATH:~/.cargo/bin/"
+. ~/.asdf/plugins/java/set-java-home.zsh
+export PATH="$HOME/.cargo/bin/:$PATH"
+export PATH="/opt/mrs-riscv-toolchain/RISC-V Embedded GCC/bin/:$PATH"
 export PATH_TO_FX=~/javafx-sdk-20.0.1/lib
 
 alias icat="kitty +kitten icat"
 alias kssh="kitty +kitten ssh"
+
+alias んゔぃｍ="nvim"
+alias emacs="nvim"
+export LIBSEAT_BACKEND=logind

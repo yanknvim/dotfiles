@@ -46,7 +46,7 @@ return {
 
 	{
 		"nvim-treesitter/nvim-treesitter",
-		event = { "BufReadPre" },
+		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			require("nvim-treesitter.configs").setup {
 				highlight = {
@@ -62,7 +62,7 @@ return {
 
 	{
 		"neovim/nvim-lspconfig",
-		event = { "BufReadPre" },
+		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			{ "williamboman/mason-lspconfig.nvim", lazy = true },
 			{ "williamboman/mason.nvim", lazy = true },
@@ -166,7 +166,7 @@ return {
 
 	{
 		"norcalli/nvim-colorizer.lua",
-		event = { "BufReadPre" },
+		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			require("colorizer").setup()
 		end,
@@ -174,7 +174,7 @@ return {
 
 	{
 		"lewis6991/gitsigns.nvim",
-		event = { "BufReadPre" },
+		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			require("gitsigns").setup()
 		end,
@@ -182,7 +182,7 @@ return {
 
 	{
 		"lukas-reineke/indent-blankline.nvim",
-		event = { "BufReadPre" },
+		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			require("indent_blankline").setup({
 				show_end_of_line = true,
