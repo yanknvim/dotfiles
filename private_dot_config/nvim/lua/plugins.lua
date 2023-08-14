@@ -9,25 +9,8 @@ return {
 	{ "kyazdani42/nvim-web-devicons", lazy = true },
 
 	require("plugins/fern"),
-
-	{
-		"nvim-telescope/telescope.nvim",
-		keys = {
-			{ "<Leader>ff", function()
-				require("telescope.builtin").find_files()
-			end },
-			{ "<Leader>fg", function()
-				require("telescope.builtin").live_grep()
-			end },
-			{ "<Leader>fb", function()
-				require("telescope.builtin").buffers()
-			end },
-			{ "<Leader>fc", function()
-				require("telescope.builtin").current_buffer_fuzzy_find()
-			end },
-		},
-		dependencies = { "nvim-lua/plenary.nvim" },
-	},
+	require("plugins/noice"),
+	require("plugins/telescope"),
 
 	{
 		"phaazon/hop.nvim",
@@ -52,7 +35,6 @@ return {
 	require("plugins/treesitter"),
 	require("plugins/lsp"),
 	require("plugins/cmp"),
-	
 	require("plugins/lualine"),
 
 	{

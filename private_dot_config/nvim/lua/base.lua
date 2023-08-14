@@ -15,7 +15,7 @@ vim.opt.shiftwidth = 2
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.wrapscan = true
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 
 vim.opt.list = true
 vim.opt.listchars = { eol = "↲" }
