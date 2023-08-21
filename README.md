@@ -7,12 +7,10 @@ yank.nvim's Dotfiles
 # Tools
 - Neovim
     - packer.nvim
-- i3wm
+- Hyprland
 - dunst
-- polybar
-- rofi
-    - rofi-power-menu
-    - nord-theme
+- waybar
+- wofi
 - zsh
     - zinit
     - pure
