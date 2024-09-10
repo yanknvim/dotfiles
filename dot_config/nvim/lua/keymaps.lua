@@ -17,8 +17,7 @@ vim.keymap.set("n", "ge", "<cmd>lua vim.diagnostic.open_float()<CR>")
 vim.keymap.set("n", "g]", "<cmd>lua vim.diagnostic.goto_next()<CR>")
 vim.keymap.set("n", "g[", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
 
-vim.keymap.set("n", "<Leader>p", "<cmd>:BufferLineCycleNext<CR>")
-vim.keymap.set("n", "<Leader>o", "<cmd>:BufferLineCyclePrev<CR>")
+vim.keymap.set({"i", "c"}, "<C-j>", "<Plug>(skkeleton-toggle)", { noremap = false })
 
 vim.keymap.set("n", "ss", "<cmd>:split<CR>")
 vim.keymap.set("n", "sv", "<cmd>:vsplit<CR>")
