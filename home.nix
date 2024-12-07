@@ -7,8 +7,20 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
+    deno
     kitty
     neovim
     fastfetch
   ];
+
+  home.file = {
+    ".config/nvim" = {
+      source = ./config/nvim;
+      recursive = true;
+    };
+    ".config/kitty" = {
+      source = ./config/kitty;
+      recursive = true;
+    };
+  };
 }
