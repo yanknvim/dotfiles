@@ -15,14 +15,14 @@
 
   outputs = inputs@{ nixpkgs, home-manager, nix-darwin, ... }: {
     nixosConfigurations = {
-      yank-main = nixpkgs.lib.nixosSystem {
+      redalice = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./hosts/nixos
+          ./hosts/redailce
           home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.yank = import ./home/nixos;
+            home-manager.users.yank = import ./home/redalice;
           }
         ];
       };
