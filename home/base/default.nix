@@ -11,6 +11,8 @@
     neovim
     fastfetch
     tree
+    fzf
+    bat
   ];
 
   home.file = {
