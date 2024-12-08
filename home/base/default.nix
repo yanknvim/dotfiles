@@ -10,6 +10,7 @@
     kitty
     neovim
     fastfetch
+    tree
   ];
 
   home.file = {

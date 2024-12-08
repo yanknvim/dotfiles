@@ -38,6 +38,9 @@
   programs.zsh.enable = true;
   programs.vim.enable = true;
   programs.git.enable = true;
+  programs.hyprland.enable = true;
+
+  security.polkit.enable = true;
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -49,10 +52,14 @@
   # Enable sound.
   # hardware.pulseaudio.enable = true;
   # OR
-  # services.pipewire = {
-  #   enable = true;
-  #   pulse.enable = true;
-  # };
+  services.pipewire = {
+    enable = true;
+    pulse.enable = true;
+  };
+
+  fonts.fonts = with pkgs; [
+    noto-fonts
+  ];
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
@@ -93,6 +100,7 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+  services.displayManager.ly.enable = true;
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
