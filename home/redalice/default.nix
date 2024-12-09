@@ -9,20 +9,24 @@
     mako
     wofi
     waybar
-    luakit
+    firefox
+    helvum
+    skktools
   ];
+
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5 = {
+      addons = with pkgs; [ fcitx5-skk fcitx5-gtk ];
+    };
+  };
 
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
-      exec-once = [
-        "waybar"
-        "mako"
-      ];
-
       "$mainMod" = "SUPER";
       "$terminal" = "kitty";
-      "$browser" = "WEBKIT_DISABLE_COMPOSITING_MODE=1 luakit";
+      "$browser" = "firefox";
       "$menu" = "wofi --show drun";
 
       bind = [
@@ -62,11 +66,18 @@
         "$mainMod SHIFT, 8, movetoworkspace, 8"
         "$mainMod SHIFT, 9, movetoworkspace, 9"
         "$mainMod SHIFT, 0, movetoworkspace, 10"
+
+        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
       ];
 
       bindm = [
         "$mainMod, mouse:272, movewindow"
         "$mainMod, mouse:273, resizewindow"
+      ];
+      
+      binde = [
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
       ];
 
       general = {
@@ -91,13 +102,19 @@
           passes = 1;
         };
       };
-    };
+
+      exec-once = [
+        "waybar"
+        "mako"
+        "fcitx5"
+      ];
+   };
   };
 
   programs.waybar = {
     enable = true;
     settings = [{
-      height = 20;
+      height = 30;
       layer = "top";
       position = "top";
 

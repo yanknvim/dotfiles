@@ -11,6 +11,7 @@
     ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
+  nixpkgs.config.allowUnfree = true;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -25,7 +26,7 @@
   time.timeZone = "Asia/Tokyo";
 
   # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = "ja_JP.UTF-8";
   # console = {
   #   font = "Lat2-Terminus16";
   #   keyMap = "us";
@@ -36,6 +37,7 @@
   # services.xserver.enable = true;
 
   programs.zsh.enable = true;
+  programs.starship.enable = true;
   programs.vim.enable = true;
   programs.git.enable = true;
   programs.hyprland.enable = true;
@@ -57,8 +59,11 @@
     pulse.enable = true;
   };
 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     noto-fonts
+    noto-fonts-cjk-serif
+    noto-fonts-cjk-sans
+    nerd-fonts.hack
   ];
 
   # Enable touchpad support (enabled default in most desktopManager).
