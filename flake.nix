@@ -13,7 +13,12 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, nix-darwin, ... }: {
+  outputs = inputs@{
+      nixpkgs,
+      home-manager,
+      nix-darwin,
+      ...
+    }: {
     nixosConfigurations = {
       redalice = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
