@@ -2,8 +2,9 @@
 {
   imports = [
     ../base
-    ../../modules/hyprland
     ../../modules/waybar
+    ../../modules/hyprland
+    ../../modules/hyprpaper
   ];
 
   home.homeDirectory = lib.mkForce "/home/yank";
@@ -12,6 +13,7 @@
     mako
     wofi
     waybar
+    hyprpaper
     firefox
     helvum
     skktools

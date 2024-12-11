@@ -84,10 +84,10 @@
       };
 
       exec-once = [
-        "hyprpanel"
+        "fcitx5 -d"
         "mako"
-        "fcitx5"
         "waybar"
+        "hyprpaper"
       ];
    };
   };

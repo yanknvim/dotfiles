@@ -11,6 +11,13 @@
       modules-center = [ "hyprland/window" ];
       modules-right = [ "pulseaudio" "clock" ];
 
+      "hyprland/window" = {
+        format = "{}";
+        rewrite = {
+          "" = "Desktop";
+        };
+      };
+
       pulseaudio = {
         format = "{volume}%";
         on-click = "helvum";
