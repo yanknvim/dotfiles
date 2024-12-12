@@ -143,7 +143,10 @@ require("jetpack.packer").add {
     end
   },
   {
-    "dstein64/vim-startuptime",
+    "nvim-lualine/lualine.nvim",
+    config = function ()
+      require("lualine").setup{}
+    end
   }
 }
 
@@ -190,5 +193,3 @@ vim.keymap.set("n", "s<", "<C-w><")
 vim.keymap.set("n", "s+", "<C-w>+")
 vim.keymap.set("n", "s-", "<C-w>-")
 vim.keymap.set("n", "sc", "<C-w>c")
-
-
