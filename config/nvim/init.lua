@@ -136,7 +136,6 @@ require("jetpack.packer").add {
   },
   {
     "vim-skk/skkeleton",
-    opt = true,
     events = "InsertEnter",
     config = function()
       vim.cmd('call skkeleton#config({"globalDictionaries": ["~/.skk/SKK-JISYO.L"]})')
