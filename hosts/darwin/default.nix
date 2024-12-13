@@ -1,5 +1,9 @@
 { pkgs, ... }:
 {
+  imports = [
+    ../../modules/yabai
+    ../../modules/skhd
+  ];
   nixpkgs.config.allowUnfree = true;
 
   programs.zsh.enable = true;
