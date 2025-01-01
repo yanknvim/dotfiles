@@ -37,7 +37,6 @@
   # services.xserver.enable = true;
 
   programs.zsh.enable = true;
-  programs.starship.enable = true;
   programs.vim.enable = true;
   programs.git.enable = true;
   programs.hyprland.enable = true;
