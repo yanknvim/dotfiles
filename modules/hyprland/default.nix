@@ -1,6 +1,9 @@
 { config, pkgs, ... }: {
   imports = [];
 
+  services.mako.enable = true;
+  programs.wofi.enable = true;
+
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
@@ -84,9 +87,7 @@
       };
 
       exec-once = [
-        "fcitx5 -d"
         "mako"
-        "waybar"
         "hyprpaper"
       ];
    };

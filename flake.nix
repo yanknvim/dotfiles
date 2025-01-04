@@ -20,14 +20,14 @@
       ...
     }: {
     nixosConfigurations = {
-      redalice = nixpkgs.lib.nixosSystem {
+      hakka = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./hosts/redalice
+          ./hosts/hakka
           home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.yank = import ./home/redalice;
+            home-manager.users.yank = import ./home/hakka;
           }
         ];
       };
