@@ -5,14 +5,14 @@
     enable = true;
     settings = {
       ipc = "on";
-      preload = "/home/yank/.bg.jpg";
-      wallpaper = ", /home/yank/.bg.jpg";
+      preload = "/home/yank/.bg/bg.jpg";
+      wallpaper = ", /home/yank/.bg/bg.jpg";
     };
   };
 
   home.file = {
-    ".bg.jpg" = {
-      source = ./bg.jpg;      
+    ".bg/bg.jpg" = {
+      source = ../../bg/bg.jpg;      
     };
   };
 }

@@ -3,24 +3,19 @@
   programs.waybar = {
     enable = true;
     settings = [{
-      height = 32;
       layer = "top";
       position = "top";
 
-      modules-left = [ "hyprland/workspaces" ];
-      modules-center = [ "hyprland/window" ];
-      modules-right = [ "pulseaudio" "clock" ];
+      modules-center = [ "hyprland/workspaces" "clock" ];
 
-      "hyprland/window" = {
-        format = "{}";
-        rewrite = {
-          "" = "Desktop";
+      "hyprland/workspaces" = {
+        format = "{icon}";
+        tooltip = false;
+        all-outputs = true;
+        format-icons = {
+          active = "";
+          default = "";
         };
-      };
-
-      pulseaudio = {
-        format = "{volume}%";
-        on-click = "helvum";
       };
 
       clock = {
@@ -30,55 +25,42 @@
 
     style = ''
     * {
-      font-size: 12px;
-      min-height: 0;
+      font-size: 16px;
       border: none;
     }
 
     window#waybar {
       background: transparent;
-      color: #eeeeee;
     }
 
     #workspaces {
-      background: #303b39;
-      border-radius: 16px;
-      padding: 0px 4px;
-      margin-left: 8px;
-      margin-right: 8px;
+      border-radius: 10px;
+      background-color: #11111b;
+      color: #b4befe;
+      margin-top: 8px;
+      margin-left: 15px;
+      margin-right: 15px;
+      padding-top: 1px;
+      padding-bottom: 1px;
+      padding-left: 10px;
+      padding-right: 10px;
     }
 
     #workspaces button {
-      background: transparent;
-      color: #888888;
-      padding: 5px;
+      background: #11111b;
+      color: #b4befe;
     }
 
-    #workspaces button.active {
-      background: transparent;
-      color: #eeeeee;
-    }
-
-    #workspaces button:hover {
-      box-shadow: inherit;
-      text-shadow: inherit;
-    }
-
-    #window {
-      background: #303b39;
-      border-radius: 16px;
-      padding: 0px 10px;
-      margin-left: 8px;
-      margin-right: 8px;
-    }
-
-    #pulseaudio,
-    #clock {
-      background: #303b39;
-      border-radius: 16px;
-      padding: 0px 10px;
-      margin-left: 4px;
-      margin-right: 4px;
+    #clock, #backlight, #pulseaudio, #bluetooth, #network, #battery{
+      border-radius: 10px;
+      background-color: #11111b;
+      color: #cdd6f4;
+      margin-top: 8px;
+      padding-top: 1px;
+      padding-bottom: 1px;
+      padding-left: 10px;
+      padding-right: 10px;
+      margin-right: 15px;
     }
     '';
   };

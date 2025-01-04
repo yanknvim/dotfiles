@@ -2,15 +2,18 @@
   imports = [];
 
   services.mako.enable = true;
-  programs.wofi.enable = true;
 
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
+      xwayland = {
+        force_zero_scaling = true;
+      };
+
       "$mainMod" = "SUPER";
       "$terminal" = "kitty";
       "$browser" = "firefox";
-      "$menu" = "wofi --show drun";
+      "$menu" = "tofi-drun --drun-launch=true";
 
       bind = [
         "$mainMod, Return, exec, $terminal"
@@ -69,7 +72,7 @@
 
         border_size = 2;
 
-        "col.active_border" = "rgba(adebb3ee)";
+        "col.active_border" = "rgba(94e2d5aa)";
         "col.inactive_border" = "rgba(595959aa)";
         
         layout = "dwindle";
@@ -89,6 +92,7 @@
       exec-once = [
         "mako"
         "hyprpaper"
+        "waybar"
       ];
    };
   };
