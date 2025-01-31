@@ -21,6 +21,10 @@
 
     userName = "yank.nvim";
     userEmail = "yanknvim@gmail.com";
+
+    extraConfig = {
+      init.defaultBranch = "main";
+    };
   };
 
   programs.zsh = {

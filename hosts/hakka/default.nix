@@ -97,6 +97,9 @@
 
   # List services that you want to enable:
 
+  programs.hyprland.enable = true;
+  # services.displayManager.ly.enable = true;
+
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 

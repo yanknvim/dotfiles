@@ -9,6 +9,11 @@
       xwayland = {
         force_zero_scaling = true;
       };
+      
+      monitor = [
+        "DP-3, 2560x1440, 0x0, 1"
+        "HDMI-A-1, 1920x1080, 160x-1080, 1"
+      ];
 
       "$mainMod" = "SUPER";
       "$terminal" = "kitty";

@@ -11,9 +11,17 @@
   home.homeDirectory = lib.mkForce "/home/yank";
 
   home.packages = with pkgs; [
-    webcord
+    discord
     helvum
+    wl-clipboard
   ];
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-wlr
+    ];
+  };
 
   i18n.inputMethod = {
     enabled = "fcitx5";
