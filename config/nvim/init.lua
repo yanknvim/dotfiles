@@ -17,6 +17,8 @@ require("jetpack.packer").add {
       require("ddc_source_lsp_setup").setup{}
 
       lspconfig.denols.setup{}
+      lspconfig.ts_ls.setup{}
+      lspconfig.svelte.setup{}
       lspconfig.lua_ls.setup{}
       lspconfig.rust_analyzer.setup{}
 

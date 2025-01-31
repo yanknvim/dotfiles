@@ -8,7 +8,6 @@
   home.packages = with pkgs; [
     deno
     kitty
-    firefox
     neovim
     fastfetch
     tree
