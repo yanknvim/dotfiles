@@ -5,6 +5,7 @@ vim.keymap.set("n", "L", "$")
 
 vim.keymap.set("n", "s", "<C-w>")
 
+vim.keymap.set("i", "<C-j>", "<Plug>(skkeleton-toggle)")
 
 vim.keymap.set("n", "<leader>]", function() vim.diagnostic.jump({ count = 1 }) end)
 vim.keymap.set("n", "<leader>[", function() vim.diagnostic.jump({ count = -1 }) end)
