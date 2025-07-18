@@ -1,8 +1,7 @@
 return {
-    { "vim-denops/denops.vim", event = "VeryLazy" },
     {
         "vim-skk/skkeleton",
-        event = "InsertEnter",
+        event = "VeryLazy",
         config = function ()
             vim.fn["skkeleton#config"]({
                 globalDictionaries = { "~/SKK-JISYO.L" },
