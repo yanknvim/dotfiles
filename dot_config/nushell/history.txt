@@ -1,0 +1,89 @@
+nvim
+nvim .config/kitty/
+nvim .config/kitty/kitty.conf
+rm .config/kitty/kitty.conf.bak
+nvim .config/kitty/
+chezmoi add .config/kitty/
+nvim .config/nushell/
+nvim ~/.local/share/chezmoi/.chezmoiignore
+nvim .config/nushell/
+editor
+nvim .config/nushell/config.nu
+history | fzf
+help str
+history | str
+history | str join
+history
+type
+type --help
+type help
+type --help
+history | str join
+history | each
+history | each { |a,b| $a }
+history | each { |a| $a }
+[1 2 3 4]
+history | into string
+history | to nuon
+history | each { |[command, index] $command }
+history | each { |[command, index]| $command }
+history | each { |it| it.command }
+history | each { |it| $it.command }
+history | str join (char nl)
+history | each {|it| $it | get command }
+history | each {|it| $it | get command } | str join
+history | each {|it| $it | get command } | str join (char nl)
+get
+get -help
+get --help
+history | select command
+history | select command | char 
+history | select command | into string
+history | select command | str
+history | select command | str join
+history | get command
+history | get command | str join '\n'
+history | get command | str join (char newline)
+nvim .config/nushell/config.nu
+history | fzf
+history | get command | str join (char newline)
+nvim .config/nushell/config.nu
+ls
+nvim
+history | get command | str join (char newline) | fzf
+nvim ~/.config/nushell/config.nu
+nvim .config/nushell/config.nu
+exit
+nvim .config/nushell/config.nu
+history | get command | str join (char newline)  
+history | get command | str join (char newline) | fzf
+sl
+echo hello
+nvim .config/nushell/config.nu
+nvim ~/.local/share/chezmoi/.chezmoiignore
+[1 2 3 4]
+nvim .config/nushell/config.nu
+exit
+nvim .config/nushell/config.nu
+nvim .config/nvim/lua/plugins/treesitter.lua
+nvim .config/nushell/config.nu
+starship
+brew install starship
+config set prompt 
+config set prompt "starship prompt"
+starship prompt
+$env.PROMPT_COMMAND
+(http get https://api.chucknorris.io/jokes/random).value<\n>
+nvim .config/nushell/env.nu
+cargo
+nvim .config/nushell/env.nu
+cargo
+rust-analyzer
+ls
+ls | sort-by modified
+nvim 
+nvim .config/nvim/lua/plugins/telescope.nvim
+nvim .config/nvim/lua/plugins/telescope.lua
+nvim
+nvim .config/nvim/init.lua
+chezmoi add .config/kitty/
