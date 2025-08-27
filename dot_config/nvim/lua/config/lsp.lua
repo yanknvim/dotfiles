@@ -45,11 +45,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
         local client = assert(vim.lsp.get_client_by_id(ev.data.client_id))
         local bufnr = ev.buf
 
-        local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
-        client.server_capabilities.completionProvider.triggerCharacters = chars
+        if client:supports_method('textDocument/implementation') then
+            local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
+            client.server_capabilities.completionProvider.triggerCharacters = chars
 
-        vim.lsp.completion.enable(true, client.id, bufnr, {
-            autotrigger = true,
-        })
+            vim.lsp.completion.enable(true, client.id, bufnr, {
+                autotrigger = true,
+            })
+        end
     end
 })
