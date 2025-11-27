@@ -3,7 +3,7 @@ vim.keymap.set("n", "J", "10j")
 vim.keymap.set("n", "K", "10k")
 vim.keymap.set("n", "L", "$")
 
-vim.keymap.set("n", "s", "<C-w>")
+-- vim.keymap.set("n", "s", "<C-w>")
 
 vim.keymap.set("i", "<C-j>", "<Plug>(skkeleton-enable)", { noremap = false })
 

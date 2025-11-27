@@ -1,12 +1,12 @@
 return {
     {
         "mason-org/mason.nvim",
-        events = "VeryLazy",
+        cmd = "Mason",
         opts = {},
     },
     {
         "mason-org/mason-lspconfig.nvim",
-        events = "VeryLazy",
+        event = { "BufNewFile", "BufReadPre" },
         opts = {},
     },
 }

@@ -1,5 +1,5 @@
 return {
     "echasnovski/mini.statusline",
-    events = "UIEnter",
+    event = "UIEnter",
     opts = {},
 }

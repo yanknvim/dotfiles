@@ -26,3 +26,4 @@ opt.writebackup = false
 opt.swapfile = false
 opt.undofile = false
 
+opt.splitbelow = true
