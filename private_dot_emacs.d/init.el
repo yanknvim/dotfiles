@@ -45,6 +45,10 @@
 	    (auto-save-file-prefix . nil)
 	    (create-lockfiles . nil)))
 
+(leaf nerd-icons
+  :ensure t
+  :custom ((nerd-icons-font-family . "Hack Nerd Font Mono")))
+
 (set-face-font 'default "Monaspace Argon-14")
 
 (leaf which-key
@@ -68,7 +72,16 @@
 	 ("C-c a" . org-agenda)
 	 ("C-c c" . org-capture))
   :custom '((org-default-notes-file . "~/org/notes.org")
-	    (org-agenda-files . '("~/org/"))))
+	    (org-agenda-files . '("~/org/")))
+  :custom-face ((org-level-1 . '((t (:weight bold :height 1.5 :family "Monaspace Xenon"))))
+		(org-level-2 . '((t (:weight bold :height 1.3 :family "Monaspace Xenon"))))
+		(org-level-3 . '((t (:weight bold :height 1.1 :family "Monaspace Xenon"))))))
+
+(leaf org-journal
+  :ensure t
+  :require t
+  :bind (("C-c j" . org-journal-new-entry))
+  :custom '((org-journal-dir . "~/org/journal/")))
 
 (leaf ox-latex
   :after org
@@ -82,6 +95,10 @@
 		 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
 		 ("\\paragraph{%s}" . "\\paragraph*{%s}")
 		 ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+
+(leaf magit
+  :ensure t
+  :bind (("C-x g" . magit-status)))
 
 (leaf vertico
   :ensure t
@@ -101,9 +118,14 @@
   :bind (("C-x C-j" . skk-mode)
 	 ("C-x j"   . skk-mode)))
 
-(leaf neotree
+(leaf treemacs
   :ensure t
-  :bind (("<f8>" . neotree-toggle)))
+  :bind (("C-x t" . treemacs)))
+
+(leaf treemacs-nerd-icons
+  :after treemacs
+  :ensure t
+  :config (treemacs-nerd-icons-config))
 
 (provide 'init)
 
