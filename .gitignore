@@ -1,0 +1,13 @@
+# emacs: 自動生成されるディレクトリ (init.el のみ管理)
+emacs/.emacs.d/auto-save-list/
+emacs/.emacs.d/eln-cache/
+emacs/.emacs.d/elpa/
+emacs/.emacs.d/*.el~
+
+# nvim: ロックファイルは管理しない場合
+# nvim/.config/nvim/nvim-pack-lock.json
+
+# バックアップファイル
+*~
+*.bak
+*.bak.*

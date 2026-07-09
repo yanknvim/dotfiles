@@ -1,0 +1,8 @@
+[user]
+	email = yanknvim@gmail.com
+	name = yanknvim
+[init]
+	defaultBranch = main
+[ghq]
+    root = ~/src
+    user = yanknvim
