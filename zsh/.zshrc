@@ -42,3 +42,13 @@ source /usr/share/fzf/completion.zsh
 
 export FZF_DEFAULT_OPTS='--height 60% --layout=reverse --border --inline-info'
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+
+# ghcd - ghq listをfzfで絞り込んでcd
+ghcd() {
+  local dir
+  dir=$(ghq list | fzf --prompt='repos> ' --preview 'ls -la $(ghq root)/{}' --preview-window 'right:50%')
+  if [[ -n "$dir" ]]; then
+    cd "$(ghq root)/$dir"
+  fi
+}
+

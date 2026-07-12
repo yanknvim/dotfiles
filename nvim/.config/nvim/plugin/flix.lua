@@ -4,6 +4,10 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         vim.pack.add({ "https://github.com/flix/nvim" })
         require("flix").setup()
+
+        vim.lsp.config("flix", {
+            cmd = { "flix", "lsp" },
+        })
         vim.lsp.enable("flix")
     end,
 })
