@@ -8,7 +8,6 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./home.nix
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -194,6 +193,12 @@
   # and migrated your data accordingly.
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.yank = import ./home.nix;
+  };
+
   system.stateVersion = "26.05"; # Did you read the comment?
 
 }
