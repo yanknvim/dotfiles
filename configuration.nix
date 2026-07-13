@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./home.nix
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -65,8 +66,6 @@
   services.displayManager.cosmic-greeter.enable = true;
   services.desktopManager.cosmic.enable = true;
 
-  programs.niri.enable = true;
-
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
@@ -105,6 +104,7 @@
       fastfetch
       btop
       skkDictionaries.l
+      pi-coding-agent
 
       vesktop
       wayvr
@@ -133,30 +133,20 @@
     };
   };
   
-  programs.git = {
-    enable = true;
-    config = {
-      ghq = {
-        root = "~/src";
-        user = "yanknvim";
-      };
-    };
-  };
 
   programs.direnv.enable = true;
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim
     wget
     neovim
+    git
     zsh
     rustup
     gcc
     zellij
-
-    kitty
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
