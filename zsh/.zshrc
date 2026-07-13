@@ -9,7 +9,6 @@ export PATH="/home/yank/llama.cpp/build/bin:$PATH"
 export PATH="/home/yank/.local/share/coursier/bin:$PATH"
 export SEARXNG_URL="http://searxng.tail9bbb5.ts.net:8080/"
 
-eval "$(mise activate zsh)"
 eval "$(direnv hook zsh)"
 
 ### Added by Zinit's installer
@@ -32,13 +31,6 @@ zinit light zsh-users/zsh-completions
 zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
 zinit light sindresorhus/pure
 
-
-# Added by Antigravity CLI installer
-export PATH="/home/yank/.local/bin:$PATH"
-
-# fzf - fuzzy finder
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
 
 export FZF_DEFAULT_OPTS='--height 60% --layout=reverse --border --inline-info'
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
