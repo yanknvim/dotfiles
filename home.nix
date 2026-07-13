@@ -53,8 +53,40 @@
         };
       };
 
+      packages = with pkgs; [
+        lua-language-server
+        nil
+        typescript-language-server
+        elmPackages.elm-language-server
+        pyright
+        racket
+        clojure-lsp
+        clang-tools
+        zls
+        tinymist
+      ];
+
       rum.programs.zsh = {
         enable = true;
+        plugins = {
+          fast-syntax-highlighting = {
+            source = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh";
+          };
+          autosuggestions = {
+            source = "${pkgs.zsh-autosuggestions}/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh";
+          };
+          completions = {
+            completions = [ "${pkgs.zsh-completions}/share/zsh/site-functions" ];
+          };
+          pure = {
+            completions = [ "${pkgs.pure-prompt}/share/zsh/site-functions" ];
+            config = ''
+              autoload -U promptinit
+              promptinit
+              prompt pure
+            '';
+          };
+        };
         initConfig = ''
           alias v=nvim
           alias z=zoxide
@@ -62,26 +94,6 @@
           alias hx=helix
 
           eval "$(direnv hook zsh)"
-
-          ### Added by Zinit's installer
-          if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
-              print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
-              command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
-              command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
-                  print -P "%F{33} %F{34}Installation successful.%f%b" || \
-                  print -P "%F{160} The clone has failed.%f%b"
-          fi
-
-          source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
-          autoload -Uz _zinit
-          (( ''${+_comps} )) && _comps[zinit]=_zinit
-
-          zinit light zdharma-continuum/fast-syntax-highlighting
-          zinit light zsh-users/zsh-autosuggestions
-          zinit light zsh-users/zsh-completions
-
-          zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
-          zinit light sindresorhus/pure
 
           # ghcd - ghq listをfzfで絞り込んでcd
           ghcd() {
