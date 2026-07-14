@@ -2,15 +2,21 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      inputs.noctalia.nixosModules.default
+      inputs.noctalia-greeter.nixosModules.default
     ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    extra-substituters = [ "https://noctalia.cachix.org" ];
+    extra-trusted-public-keys = [ "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4=" ];
+  };
 
   nixpkgs.config.allowUnfree = true;
 
@@ -66,8 +72,26 @@
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
   
-  services.displayManager.cosmic-greeter.enable = true;
-  services.desktopManager.cosmic.enable = true;
+  # Noctalia をメインで使う場合は以下を無効化すると競合を避けられます
+  # services.displayManager.cosmic-greeter.enable = true;
+  # services.desktopManager.cosmic.enable = true;
+
+  programs.zsh.enable = true;
+
+  programs.niri = {
+    enable = true;
+    package = pkgs.niri-unstable;
+  };
+
+  programs.noctalia = {
+    enable = true;
+    recommendedServices.enable = true;
+  };
+
+  programs.noctalia-greeter = {
+    enable = true;
+    greeter-args = "--session niri";
+  };
 
   hardware.graphics = {
     enable = true;
@@ -87,6 +111,18 @@
   services.pipewire = {
     enable = true;
     pulse.enable = true;
+    extraConfig.pipewire-pulse."99-stop-microphone-auto-adjust" = {
+      "pulse.rules" = [
+        {
+          matches = [
+            { "application.process.binary" = "Discord"; }
+          ];
+          actions = {
+            quirks = [ "block-source-volume" "block-sink-volume" ];
+          };
+        }
+      ];
+    };
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -95,7 +131,8 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.yank = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "video" "render" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "video" "render" ]; # Enable 'sudo' for the user.
+    shell = pkgs.zsh;
     packages = with pkgs; [
       tree
       gh
@@ -141,6 +178,11 @@
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
+  environment.pathsToLink = [
+    "/share/applications"
+    "/share/xdg-desktop-portal"
+  ];
+
   environment.systemPackages = with pkgs; [
     vim
     wget
@@ -197,11 +239,6 @@
   # and migrated your data accordingly.
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    users.yank = import ./home.nix;
-  };
 
   system.stateVersion = "26.05"; # Did you read the comment?
 
