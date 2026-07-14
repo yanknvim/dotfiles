@@ -25,6 +25,7 @@ opt.backup = false
 opt.writebackup = false
 opt.swapfile = false
 
+opt.termguicolors = true
 opt.cmdheight = 0
 opt.laststatus = 0
 opt.statusline = "─"
