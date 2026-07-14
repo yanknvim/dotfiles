@@ -10,7 +10,7 @@
     };
 
     niri = {
-      url = "github:sodiboo/niri-flake";
+      url = "github:epireyn/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -22,13 +22,19 @@
       url = "github:noctalia-dev/noctalia-greeter";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, niri, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, niri, stylix, ... }@inputs: {
     nixosConfigurations.sanatia = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
       modules = [
+        stylix.nixosModules.stylix
         niri.nixosModules.niri
         { nixpkgs.overlays = [ niri.overlays.niri ]; }
         home-manager.nixosModules.home-manager

@@ -12,11 +12,6 @@
     systemd.enable = true;
     settings = {
       launch_apps_as_systemd_services = true;
-      theme = {
-        mode = "dark";
-        source = "builtin";
-        builtin = "Rosé Pine";
-      };
       wallpaper = {
         enabled = true;
         default.path = "/home/yank/Pictures/mousou_angel2.jpg";
@@ -44,6 +39,9 @@
 
   programs.neovim = {
     enable = true;
+    # sideloadInitLua lets Stylix inject the colorscheme config via --cmd
+    # while keeping your custom ~/.config/nvim from xdg.configFile."nvim".source
+    sideloadInitLua = true;
     extraPackages = with pkgs; [
       lua-language-server
       nil
@@ -58,14 +56,18 @@
     ];
   };
 
+  stylix.targets.neovim.enable = true;
+  stylix.targets.ghostty.enable = true;
+
+  stylix.opacity = {
+    terminal = 0.85;
+  };
+
   programs.ghostty = {
     enable = true;
     enableZshIntegration = true;
     settings = {
-      font-family = "MonaspiceAr Nerd Font";
-      font-size = 11;
       window-decoration = false;
-      theme = "Kanagawa Wave";
     };
   };
 
@@ -113,7 +115,10 @@
     spotify
   ];
 
-  programs.niri.settings = {
+  # Use Stylix colors for niri window decorations
+  programs.niri.settings = let
+    inherit (config.lib.stylix.colors.withHashtag) base00 base01 base02 base03 base04 base05 base06 base07 base08 base09 base0A base0B base0C base0D base0E base0F;
+  in {
     input = {
       keyboard.numlock = true;
       touchpad = {
@@ -137,17 +142,14 @@
       };
 
       focus-ring = {
+        enable = true;
         width = 4;
-        active.color = "#7fc8ff";
-        inactive.color = "#505050";
+        active = { color = base0A; };
+        inactive = { color = base03; };
       };
 
       border = {
         enable = false;
-        width = 4;
-        active.color = "#ffc87f";
-        inactive.color = "#505050";
-        urgent.color = "#9b0000";
       };
 
       shadow = {
@@ -184,6 +186,14 @@
           bottom-left = 20.0;
         };
         clip-to-geometry = true;
+        draw-border-with-background = false;
+      }
+      {
+        matches = [ { app-id = "^com\\.mitchellh\\.ghostty$"; } ];
+        background-effect = {
+          blur = true;
+          xray = true;
+        };
       }
       {
         matches = [ { app-id = "^org\\.wezfurlong\\.wezterm$"; } ];
@@ -208,8 +218,6 @@
       }
     ];
 
-    # モニターのレイアウト: HDMI (上) + DP (下) の縦積み
-    # 実際のコネクタ名は `niri msg outputs` で確認して修正してください
     outputs = {
       # HDMI-A-1 (LG IPS FULLHD): 上
       "HDMI-A-1" = {
