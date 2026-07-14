@@ -59,6 +59,10 @@
     nerd-fonts.monaspace
   ];
 
+  services.udev.extraRules = ''
+  ACTION=="add|change", KERNEL=="event[0-9]*", ATTRS{name}=="*Controller Touchpad", ENV{LIBINPUT_IGNORE_DEVICE}="1"
+  '';
+
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
   
