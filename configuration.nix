@@ -38,6 +38,19 @@
     };
   };
 
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-wlr
+    ];
+    config = {
+      niri = {
+        default = [ "gtk" "wlr" ];
+      };
+    };
+  };
+
   fonts.packages = with pkgs;[
     noto-fonts
     noto-fonts-cjk-sans
@@ -183,6 +196,8 @@
     rustup
     gcc
     zellij
+
+    xwayland-satellite
   ];
 
   services.openssh.enable = true;

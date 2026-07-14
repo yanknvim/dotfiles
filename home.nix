@@ -53,11 +53,15 @@
       clang-tools
       zls
       tinymist
+      ripgrep
     ];
   };
 
   stylix.targets.neovim.enable = true;
   stylix.targets.ghostty.enable = true;
+  stylix.targets.btop.enable = true;
+  stylix.targets.gtk.enable = true;
+  stylix.targets.yazi.enable = true;
 
   stylix.opacity = {
     terminal = 0.85;
@@ -113,6 +117,8 @@
     fuzzel
     mako
     spotify
+    nemo
+    yazi
   ];
 
   # Use Stylix colors for niri window decorations
@@ -160,6 +166,8 @@
         offset.y = 5;
         color = "#0007";
       };
+
+      background-color = "transparent";
     };
 
     spawn-at-startup = [
@@ -214,6 +222,10 @@
     layer-rules = [
       {
         matches = [ { namespace = "^noctalia-backdrop"; } ];
+        place-within-backdrop = true;
+      }
+      {
+        matches = [ { namespace = "^noctalia-wallpaper"; } ];
         place-within-backdrop = true;
       }
     ];
