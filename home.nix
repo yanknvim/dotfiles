@@ -121,8 +121,6 @@
   };
 
   home.packages = with pkgs; [
-    fuzzel
-    mako
     spotify
     nemo
     yazi
