@@ -63,6 +63,13 @@
   stylix.targets.gtk.enable = true;
   stylix.targets.yazi.enable = true;
 
+  stylix.icons = {
+    enable = true;
+    package = pkgs.papirus-icon-theme;
+    dark = "Papirus-Dark";
+    light = "Papirus-Light";
+  };
+
   stylix.opacity = {
     terminal = 0.85;
   };

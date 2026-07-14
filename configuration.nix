@@ -198,6 +198,8 @@
     zellij
 
     xwayland-satellite
+
+    papirus-icon-theme
   ];
 
   services.openssh.enable = true;
