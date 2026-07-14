@@ -19,6 +19,11 @@
 
   programs.direnv.enable = true;
 
+  programs.emacs = {
+    enable = true;
+    package = pkgs.emacs;
+  };
+
   programs.kitty = {
     enable = true;
     font.name = "MonaspiceAr Nerd Font";
