@@ -30,7 +30,7 @@
         enable = true;
         width = 4;
         active = { color = base0A; };
-        inactive = { color = base03; };
+      # inactive = { color = base03; };
       };
 
       border = {
@@ -117,6 +117,11 @@
       # DP-3 (Xiaomi P24FBA-RAGL): 下
       "DP-3" = {
         position = { x = 0; y = 1080; };
+        mode = {
+          width = 1920;
+          height = 1080;
+          refresh = 100.0;
+        };
       };
     };
 

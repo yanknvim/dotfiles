@@ -15,6 +15,8 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  boot.kernelModules = [ "i2c-dev" "i2c-piix4" ];
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -56,6 +58,12 @@
     noto-fonts-cjk-sans
     nerd-fonts.monaspace
   ];
+
+  services.hardware.openrgb = {
+    enable = true;
+    package = pkgs.openrgb-with-all-plugins;
+    motherboard = "amd";
+  };
 
   services.udev.extraRules = ''
   ACTION=="add|change", KERNEL=="event[0-9]*", ATTRS{name}=="*Controller Touchpad", ENV{LIBINPUT_IGNORE_DEVICE}="1"
