@@ -3,9 +3,11 @@
 {
   imports = [
     inputs.noctalia.homeModules.default
+    inputs.nixvim.homeModules.nixvim
     ./home/noctalia.nix
     ./home/niri.nix
     ./home/stylix.nix
+    ./home/nixvim.nix
     ./home/zellij.nix
   ];
 
@@ -36,26 +38,6 @@
 
   programs.emacs = {
     enable = true;
-  };
-
-  programs.neovim = {
-    enable = true;
-    # sideloadInitLua lets Stylix inject the colorscheme config via --cmd
-    # while keeping your custom ~/.config/nvim from xdg.configFile."nvim".source
-    sideloadInitLua = true;
-    extraPackages = with pkgs; [
-      lua-language-server
-      nil
-      typescript-language-server
-      elmPackages.elm-language-server
-      pyright
-      racket
-      clojure-lsp
-      clang-tools
-      zls
-      tinymist
-      ripgrep
-    ];
   };
 
   programs.ghostty = {
@@ -127,8 +109,6 @@
     yazi
   ];
 
-
-  xdg.configFile."nvim".source = ./nvim;
 
   home.file.".emacs.d/init.el".source = ./emacs/init.el;
 }

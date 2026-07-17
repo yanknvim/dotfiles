@@ -27,9 +27,28 @@
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixvim = {
+      url = "github:nix-community/nixvim";
+    };
+
+    skkeleton = {
+      url = "github:vim-skk/skkeleton";
+      flake = false;
+    };
+
+    flix-nvim = {
+      url = "github:flix/nvim";
+      flake = false;
+    };
+
+    veryl-vim = {
+      url = "github:veryl-lang/veryl.vim";
+      flake = false;
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, niri, stylix, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, niri, stylix, nixvim, ... }@inputs: {
     nixosConfigurations.sanatia = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
