@@ -108,6 +108,17 @@
     enableZshIntegration = true;
   };
 
+  programs.herdr = {
+    enable = true;
+    settings = {
+      onboarding = false;
+
+      keys = {
+        prefix = "ctrl+a";
+      };
+    };
+  };
+
   programs.lazygit.enable = true;
 
   home.packages = with pkgs; [
@@ -115,6 +126,7 @@
     nemo
     yazi
   ];
+
 
   xdg.configFile."nvim".source = ./nvim;
 

@@ -47,6 +47,7 @@ vim.lsp.enable("clojure_lsp")
 vim.lsp.enable("clangd")
 vim.lsp.enable("zls")
 vim.lsp.enable("tinymist")
+vim.lsp.enable("veryl_ls")
 
 vim.o.pumborder = "rounded"
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect', 'fuzzy', 'popup' }
