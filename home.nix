@@ -5,6 +5,7 @@
     inputs.noctalia.homeModules.default
     ./home/noctalia.nix
     ./home/niri.nix
+    ./home/stylix.nix
     ./home/zellij.nix
   ];
 
@@ -18,8 +19,17 @@
 
   home.sessionVariables = {
     SEARXNG_URL = "http://searxng.tail9bbb5.ts.net:8080/";
-    FZF_DEFAULT_OPTS = "--height 60% --layout=reverse --border --inline-info";
-    FZF_DEFAULT_COMMAND = "fd --type f --hidden --follow --exclude .git";
+  };
+
+  programs.fzf = {
+    enable = true;
+
+    defaultOptions = [
+      "--height 40%"
+      "--layout=reverse"
+      "--border"
+      "--inline-info"
+    ];
   };
 
   programs.direnv.enable = true;
@@ -48,30 +58,11 @@
     ];
   };
 
-  stylix.targets.neovim.enable = true;
-  stylix.targets.ghostty.enable = true;
-  stylix.targets.btop.enable = true;
-  stylix.targets.gtk.enable = true;
-  stylix.targets.yazi.enable = true;
-  stylix.targets.zellij.enable = true;
-
-  stylix.icons = {
-    enable = true;
-    package = pkgs.papirus-icon-theme;
-    dark = "Papirus-Dark";
-    light = "Papirus-Light";
-  };
-
-  stylix.opacity = {
-    terminal = 0.70;
-  };
-
   programs.ghostty = {
     enable = true;
     enableZshIntegration = true;
     settings = {
       window-decoration = false;
-      working-directory = "/home/yank";
     };
   };
 
@@ -92,7 +83,6 @@
     fastSyntaxHighlighting.enable = true;
     shellAliases = {
       v = "nvim";
-      z = "zoxide";
       lg = "lazygit";
       hx = "helix";
     };
@@ -112,6 +102,13 @@
       }
     '';
   };
+
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.lazygit.enable = true;
 
   home.packages = with pkgs; [
     spotify

@@ -152,9 +152,6 @@
       tree
       gh
       ghq
-      stow
-      fzf
-      lazygit
       deno
       fastfetch
       btop
@@ -169,6 +166,7 @@
       pavucontrol
     ];
   };
+
   programs.firefox.enable = true;
 
   programs.steam = {
