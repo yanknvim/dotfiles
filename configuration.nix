@@ -77,29 +77,6 @@
     base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
     polarity = "dark";
 
-    cursor = {
-      name = "Vanilla-DMZ";
-      package = pkgs.vanilla-dmz;
-      size = 24;
-    };
-
-    fonts = {
-      sansSerif = {
-        package = pkgs.noto-fonts;
-        name = "Noto Sans CJK JP";
-      };
-      monospace = {
-        package = pkgs.nerd-fonts.monaspace;
-        name = "MonaspiceAr Nerd Font";
-      };
-      sizes = {
-        applications = 11;
-        desktop = 11;
-        terminal = 11;
-        popups = 11;
-      };
-    };
-
     targets = {
       nixos-icons.enable = true;
       grub.enable = false;
@@ -151,23 +128,6 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "video" "render" ];
     shell = pkgs.zsh;
-    packages = with pkgs; [
-      tree
-      gh
-      ghq
-      deno
-      fastfetch
-      btop
-      skkDictionaries.l
-      pi-coding-agent
-
-      vesktop
-      wayvr
-      xrizer
-      mangohud
-
-      pavucontrol
-    ];
   };
 
   programs.firefox.enable = true;
@@ -202,13 +162,9 @@
     neovim
     git
     zsh
-    rustup
     gcc
-    zellij
 
     xwayland-satellite
-
-    papirus-icon-theme
   ];
 
   services.openssh.enable = true;

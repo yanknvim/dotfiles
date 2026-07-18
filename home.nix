@@ -111,6 +111,22 @@
     spotify
     nemo
     yazi
+
+    tree
+    gh
+    ghq
+    deno
+    fastfetch
+    btop
+    skkDictionaries.l
+    pi-coding-agent
+
+    vesktop
+    wayvr
+    xrizer
+    mangohud
+
+    pavucontrol
   ];
 
 
