@@ -7,9 +7,4 @@ emacs/*.el~
 # nvim
 nvim/nvim-pack-lock.json
 
-# backup files
-*~
-*.bak
-*.bak.*
-
 result

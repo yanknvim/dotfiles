@@ -23,6 +23,8 @@
     SEARXNG_URL = "http://searxng.tail9bbb5.ts.net:8080/";
   };
 
+  home.pointerCursor.enable = true;
+
   programs.fzf = {
     enable = true;
 
@@ -50,9 +52,11 @@
 
   programs.git = {
     enable = true;
-    userName = "yanknvim";
-    userEmail = "yanknvim@gmail.com";
-    extraConfig = {
+    settings = {
+      user = {
+        name = "yanknvim";
+        email = "yanknvim@gmail.com";
+      };
       init.defaultBranch = "main";
       ghq.root = "~/src";
       ghq.user = "yanknvim";

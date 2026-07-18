@@ -14,6 +14,9 @@
   };
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-40.10.5"
+  ];
 
   boot.kernelModules = [ "i2c-dev" "i2c-piix4" ];
 
