@@ -6,7 +6,7 @@
     inputs.nixvim.homeModules.nixvim
     ./home/noctalia.nix
     ./home/niri.nix
-    ./home/stylix.nix
+    ./home/theme.nix
     ./home/nixvim.nix
     ./home/zellij.nix
   ];
@@ -47,6 +47,7 @@
     enableZshIntegration = true;
     settings = {
       window-decoration = false;
+      theme = "rose-pine";
     };
   };
 

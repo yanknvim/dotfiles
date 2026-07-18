@@ -72,17 +72,6 @@
   ACTION=="add|change", KERNEL=="event[0-9]*", ATTRS{name}=="*Controller Touchpad", ENV{LIBINPUT_IGNORE_DEVICE}="1"
   '';
 
-  stylix = {
-    enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
-    polarity = "dark";
-
-    targets = {
-      nixos-icons.enable = true;
-      grub.enable = false;
-    };
-  };
-
   programs.zsh.enable = true;
 
   programs.niri = {

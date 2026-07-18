@@ -18,6 +18,8 @@ in
   programs.nixvim = {
     enable = true;
 
+    colorscheme = "rose-pine";
+
     luaLoader.enable = true;
 
     performance.byteCompileLua.enable = true;
@@ -351,6 +353,7 @@ in
       incline-nvim
       snacks-nvim
       reactive-nvim
+      rose-pine
     ] ++ [
       skkeleton
       flix-nvim
