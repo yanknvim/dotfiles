@@ -10,40 +10,22 @@
         tap = true;
         natural-scroll = true;
       };
+      # ペンタブを DP-3（下の Xiaomi ディスプレイ）に割り振る
+      tablet = {
+        map-to-output = "DP-3";
+      };
+    };
+
+    cursor = {
+      # テーマは home.nix の home.packages で adwaita-icon-theme を追加している
+      theme = "Adwaita";
+      size = 24;
     };
 
     layout = {
-      gaps = 16;
-      center-focused-column = "never";
-
-      preset-column-widths = [
-        { proportion = 0.33333; }
-        { proportion = 0.5; }
-        { proportion = 0.66667; }
-      ];
-
-      default-column-width = {
-        proportion = 0.5;
-      };
-
       focus-ring = {
-        enable = true;
-        width = 4;
         active = { color = base0A; };
       # inactive = { color = base03; };
-      };
-
-      border = {
-        enable = false;
-      };
-
-      shadow = {
-        enable = false;
-        softness = 30;
-        spread = 5;
-        offset.x = 0;
-        offset.y = 5;
-        color = "#0007";
       };
 
       background-color = "transparent";
@@ -81,10 +63,6 @@
           blur = true;
           xray = true;
         };
-      }
-      {
-        matches = [ { app-id = "^org\\.wezfurlong\\.wezterm$"; } ];
-        default-column-width = {};
       }
       {
         matches = [ { app-id = "firefox$"; title = "^Picture-in-Picture$"; } ];

@@ -21,22 +21,13 @@ let
   };
 in
 {
-  home.pointerCursor = {
-    package = pkgs.rose-pine-cursor;
-    name = "rose-pine";
-    size = 24;
-    gtk.enable = true;
-  };
-
   gtk = {
     enable = true;
-    theme = {
-      package = pkgs.rose-pine-gtk-theme;
-      name = "rose-pine";
-    };
-    iconTheme = {
-      package = pkgs.rose-pine-icon-theme;
-      name = "rose-pine";
+
+    # niri の cursor 設定と合わせる
+    cursorTheme = {
+      name = "Adwaita";
+      size = 24;
     };
   };
 
@@ -44,10 +35,6 @@ in
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
-      gtk-theme = "rose-pine";
-      icon-theme = "rose-pine";
-      cursor-theme = "rose-pine";
-      cursor-size = 24;
     };
   };
 }

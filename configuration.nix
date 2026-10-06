@@ -19,6 +19,7 @@
   ];
 
   boot.kernelModules = [ "i2c-dev" "i2c-piix4" ];
+  boot.kernelParams = [ "amdgpu.hw_i2c=1" ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -46,12 +47,12 @@
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
+      xdg-desktop-portal-gnome
       xdg-desktop-portal-gtk
-      xdg-desktop-portal-wlr
     ];
     config = {
       niri = {
-        default = [ "gtk" "wlr" ];
+        default = [ "gnome" "gtk" ];
       };
     };
   };
@@ -61,6 +62,10 @@
     noto-fonts-cjk-sans
     nerd-fonts.monaspace
   ];
+
+  hardware.bluetooth = {
+    enable = true;
+  };
 
   services.hardware.openrgb = {
     enable = true;

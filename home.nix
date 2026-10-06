@@ -2,7 +2,9 @@
 
 {
   imports = [
-    inputs.noctalia.homeModules.default
+    # NOTE: home-manager now ships its own programs.noctalia module
+    # (modules/programs/noctalia). Importing noctalia's home module too
+    # used to double-declare options like programs.noctalia.checkConfig.
     inputs.nixvim.homeModules.nixvim
     ./home/noctalia.nix
     ./home/niri.nix
@@ -22,8 +24,6 @@
   home.sessionVariables = {
     SEARXNG_URL = "http://searxng.tail9bbb5.ts.net:8080/";
   };
-
-  home.pointerCursor.enable = true;
 
   programs.fzf = {
     enable = true;
@@ -47,7 +47,9 @@
     enableZshIntegration = true;
     settings = {
       window-decoration = false;
-      theme = "rose-pine";
+      font-family = "MonaspiceNe Nerd Font Mono";
+      font-size = 12;
+      font-feature = "-calt";
     };
   };
 
@@ -71,7 +73,6 @@
     shellAliases = {
       v = "nvim";
       lg = "lazygit";
-      hx = "helix";
     };
     initContent = ''
       fpath+=${pkgs.zsh-completions}/share/zsh/site-functions
@@ -106,7 +107,29 @@
     };
   };
 
+  programs.pi-coding-agent = {
+    enable = true;
+    extraPackages = [
+      pkgs.nodejs
+    ];
+  };
+
+  programs.obs-studio = {
+    enable = true;
+    plugins = with pkgs.obs-studio-plugins; [
+      wlrobs
+      obs-backgroundremoval
+      obs-pipewire-audio-capture
+      obs-vaapi
+      obs-vkcapture
+    ];
+  };
+
   programs.lazygit.enable = true;
+  programs.helix = {
+    settings.theme = "kanagawa";
+    enable = true;
+  };
 
   home.packages = with pkgs; [
     spotify
@@ -118,18 +141,31 @@
     ghq
     deno
     fastfetch
-    btop
+    btop-rocm
     skkDictionaries.l
-    pi-coding-agent
+    llm-agents.codex
+    llm-agents.hunk
+    opencode
+    uv
+    gimp
+    rocmPackages.amdsmi
 
     vesktop
     wayvr
     xrizer
     mangohud
 
-    pavucontrol
-  ];
+    krita
+    imv
 
+    # niri のカーソルテーマ
+    adwaita-icon-theme
+
+    inputs.turboquant.packages.${pkgs.system}.vulkan
+
+    pavucontrol
+    inputs.hermes-agent.packages.${pkgs.system}.desktop
+  ];
 
   home.file.".emacs.d/init.el".source = ./emacs/init.el;
 }
