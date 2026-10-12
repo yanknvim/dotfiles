@@ -81,6 +81,16 @@ inputs = {
                 NIX_LDFLAGS = (old.NIX_LDFLAGS or "") + " -fuse-ld=lld";
               });
             })
+            # asunder は nixpkgs の定義で makeWrapper による PATH 付与しか行っておらず、
+            # GTK3 の gsettings schemas (org.gtk.Settings.FileChooser 等) が
+            # XDG_DATA_DIRS に入らない。起動時に
+            #   Settings schema 'org.gtk.Settings.FileChooser' is not installed
+            # で abort するため、wrapGAppsHook3 で schema パスをラッパーに付与する。
+            (final: prev: {
+              asunder = prev.asunder.overrideAttrs (old: {
+                nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ final.wrapGAppsHook3 ];
+              });
+            })
           ];
         }
         home-manager.nixosModules.home-manager

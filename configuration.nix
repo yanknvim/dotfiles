@@ -18,7 +18,7 @@
     "electron-40.10.5"
   ];
 
-  boot.kernelModules = [ "i2c-dev" "i2c-piix4" ];
+  boot.kernelModules = [ "i2c-dev" "i2c-piix4" "sg" ];
   boot.kernelParams = [ "amdgpu.hw_i2c=1" ];
 
   boot.loader.systemd-boot.enable = true;
@@ -53,6 +53,11 @@
     config = {
       niri = {
         default = [ "gnome" "gtk" ];
+        # xdg-desktop-portal-gnome の FileChooser は org.gnome.Nautilus への
+        # プロキシで、Nautilus 未導入だと "The name is not activatable" で
+        # 失敗し、アプリ側にはエラーも出ずダイアログが開かない。
+        # GTK 実装に回す。
+        "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
       };
     };
   };
@@ -120,7 +125,7 @@
 
   users.users.yank = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "video" "render" ];
+    extraGroups = [ "wheel" "video" "render" "cdrom" "optical" ];
     shell = pkgs.zsh;
   };
 

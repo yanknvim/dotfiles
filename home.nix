@@ -11,6 +11,7 @@
     ./home/theme.nix
     ./home/nixvim.nix
     ./home/zellij.nix
+    ./home/navidrome.nix
   ];
 
   home.stateVersion = "26.05";
@@ -109,6 +110,9 @@
 
   programs.pi-coding-agent = {
     enable = true;
+    # nixpkgs の pi-coding-agent は更新が遅いため、llm-agents のビルドを使う
+    # (home-manager モジュールの既定は pkgs.pi-coding-agent)。
+    package = pkgs.llm-agents.pi;
     extraPackages = [
       pkgs.nodejs
     ];
@@ -143,7 +147,7 @@
     fastfetch
     btop-rocm
     skkDictionaries.l
-    llm-agents.codex
+    llm-agents.dsh
     llm-agents.hunk
     opencode
     uv
@@ -158,6 +162,18 @@
     krita
     imv
 
+    vlc
+
+    asunder
+
+    abcde
+    flac
+    lame
+
+    vscode
+  
+    audacious
+
     # niri のカーソルテーマ
     adwaita-icon-theme
 
@@ -168,4 +184,5 @@
   ];
 
   home.file.".emacs.d/init.el".source = ./emacs/init.el;
+
 }
