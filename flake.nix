@@ -91,6 +91,27 @@ inputs = {
                 nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ final.wrapGAppsHook3 ];
               });
             })
+            # dsh は Node の internal module を node-addon-require-builtin の
+            # prebuilt native addon 経由で読む。この addon は実行中の node の
+            # マシンコードをパターン照合して V8 のフィールド offset を復元するため、
+            # nixpkgs のビルドフラグ次第で一致しなくなり起動時に abort する:
+            #   node-addon-require-builtin unsupported: Unsupported/no-getter
+            #   (x64 sysv getter is not a recognized this->field accessor)
+            # x86_64 の原因は hardening `zerocallusedregs`
+            # (-fzero-call-used-regs=used-gpr) が getter の epilogue に足す xor。
+            # node だけ再ビルドして外す (他パッケージへの波及なし)。
+            # arm64 は原因が別で cc-wrapper の leaf frame pointer フラグなので、
+            # そちらでは NIX_CFLAGS_COMPILE = "-fomit-frame-pointer -momit-leaf-frame-pointer"。
+            (final: prev: {
+              llm-agents = prev.llm-agents // {
+                dsh = prev.llm-agents.dsh.override {
+                  # runtime に npm は要らない (`dsh plugin` の pnpm は別途) ので slim でよい。
+                  nodejs = final.nodejs-slim.overrideAttrs {
+                    hardeningDisable = [ "zerocallusedregs" ];
+                  };
+                };
+              };
+            })
           ];
         }
         home-manager.nixosModules.home-manager

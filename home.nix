@@ -144,6 +144,8 @@
     gh
     ghq
     deno
+    # `dsh plugin --profile <name> add ...` が profile 内で pnpm に転送するため
+    pnpm
     fastfetch
     btop-rocm
     skkDictionaries.l
